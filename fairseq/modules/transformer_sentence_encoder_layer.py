@@ -1,3 +1,4 @@
+
 # Copyright (c) Facebook, Inc. and its affiliates.
 #
 # This source code is licensed under the MIT license found in the
@@ -75,7 +76,7 @@ class TransformerSentenceEncoderLayer(nn.Module):
             key=x,
             value=x,
             key_padding_mask=self_attn_padding_mask,
-            need_weights=False,
+            need_weights=True,
             attn_mask=self_attn_mask,
         )
         x = F.dropout(x, p=self.dropout, training=self.training)

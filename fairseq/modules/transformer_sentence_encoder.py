@@ -211,6 +211,7 @@ class TransformerSentenceEncoder(nn.Module):
         x = x.transpose(0, 1)
 
         inner_states = []
+        attns = []
         if not last_state_only:
             inner_states.append(x)
 
@@ -218,16 +219,18 @@ class TransformerSentenceEncoder(nn.Module):
             # add LayerDrop (see https://arxiv.org/abs/1909.11556 for description)
             dropout_probability = random.uniform(0, 1)
             if not self.training or (dropout_probability > self.layerdrop):
-                x, _ = layer(x, self_attn_padding_mask=padding_mask)
+                x, a = layer(x, self_attn_padding_mask=padding_mask)
                 if not last_state_only:
                     inner_states.append(x)
+                    attns.append(a)
 
         sentence_rep = x[0, :, :]
 
         if last_state_only:
             inner_states = [x]
+            attns = [a]
 
         if self.traceable:
-            return torch.stack(inner_states), sentence_rep
+            return torch.stack(inner_states), sentence_rep, attns
         else:
-            return inner_states, sentence_rep
+            return inner_states, sentence_rep, attns

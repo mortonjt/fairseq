@@ -89,7 +89,8 @@ class RobertaHubInterface(nn.Module):
         if return_all_hiddens:
             # convert from T x B x C -> B x T x C
             inner_states = extra['inner_states']
-            return [inner_state.transpose(0, 1) for inner_state in inner_states]
+            # return [inner_state.transpose(0, 1) for inner_state in inner_states]
+            return extra
         else:
             return features  # just the last layer's features
 
