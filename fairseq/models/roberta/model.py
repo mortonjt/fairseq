@@ -410,3 +410,39 @@ def xlm_architecture(args):
     args.encoder_attention_heads = getattr(args, 'encoder_attention_heads', 16)
 
     base_architecture(args)
+
+
+@register_model_architecture('roberta', 'gert_xs')
+def gert_xs_architecture(args):
+    args.encoder_layers = getattr(args, 'encoder_layers', 4)
+    args.encoder_embed_dim = getattr(args, 'encoder_embed_dim', 512)
+    args.encoder_ffn_embed_dim = getattr(args, 'encoder_ffn_embed_dim', 2048)
+    args.encoder_attention_heads = getattr(args, 'encoder_attention_heads', 4)
+
+    args.activation_fn = getattr(args, 'activation_fn', 'gelu')
+    args.pooler_activation_fn = getattr(args, 'pooler_activation_fn', 'tanh')
+
+    args.dropout = getattr(args, 'dropout', 0.1)
+    args.attention_dropout = getattr(args, 'attention_dropout', 0.1)
+    args.activation_dropout = getattr(args, 'activation_dropout', 0.0)
+    args.pooler_dropout = getattr(args, 'pooler_dropout', 0.0)
+    args.encoder_layers_to_keep = getattr(args, 'encoder_layers_to_keep', None)
+    args.encoder_layerdrop = getattr(args, 'encoder_layerdrop', 0.0)
+
+
+@register_model_architecture('roberta', 'gert')
+def gert_architecture(args):
+    args.encoder_layers = getattr(args, 'encoder_layers', 4)
+    args.encoder_embed_dim = getattr(args, 'encoder_embed_dim', 1024)
+    args.encoder_ffn_embed_dim = getattr(args, 'encoder_ffn_embed_dim', 4096)
+    args.encoder_attention_heads = getattr(args, 'encoder_attention_heads', 4)
+
+    args.activation_fn = getattr(args, 'activation_fn', 'gelu')
+    args.pooler_activation_fn = getattr(args, 'pooler_activation_fn', 'tanh')
+
+    args.dropout = getattr(args, 'dropout', 0.1)
+    args.attention_dropout = getattr(args, 'attention_dropout', 0.1)
+    args.activation_dropout = getattr(args, 'activation_dropout', 0.0)
+    args.pooler_dropout = getattr(args, 'pooler_dropout', 0.0)
+    args.encoder_layers_to_keep = getattr(args, 'encoder_layers_to_keep', None)
+    args.encoder_layerdrop = getattr(args, 'encoder_layerdrop', 0.0)
