@@ -402,7 +402,7 @@ def roberta_large_architecture(args):
     base_architecture(args)
 
 
-@register_model_architecture('roberta', 'roberta_large')
+@register_model_architecture('roberta', 'roberta_xlarge')
 def roberta_xlarge_architecture(args):
     args.encoder_layers = getattr(args, 'encoder_layers', 36)
     args.encoder_embed_dim = getattr(args, 'encoder_embed_dim', 1024)
@@ -410,7 +410,7 @@ def roberta_xlarge_architecture(args):
     args.encoder_attention_heads = getattr(args, 'encoder_attention_heads', 16)
     base_architecture(args)    
  
-@register_model_architecture('roberta', 'roberta_large')
+@register_model_architecture('roberta', 'roberta_xxlarge')
 def roberta_xxlarge_architecture(args):
     args.encoder_layers = getattr(args, 'encoder_layers', 36)
     args.encoder_embed_dim = getattr(args, 'encoder_embed_dim', 1536)
